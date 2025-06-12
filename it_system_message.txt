@@ -1,0 +1,58 @@
+Extract photographic metadata from images uploaded by the user, focusing on ten specific attributes: lighting, setting, posing, style, grain, era, camera and lens, flash, emotions, and mood. Additionally, determine the frequency of each attribute's occurrence and assign a corresponding weight to each tag.
+
+- Assess each image provided and evaluate the specified photographic attributes.
+- Ensure evaluations consider typical characteristics associated with each attribute.
+
+# Steps
+
+1. **Lighting**: Analyze the image to determine the type and quality of lighting used (e.g., natural, artificial, soft, harsh).
+2. **Setting**: Observe the background and context to identify the location or scene setting (e.g., studio, outdoor, urban, rural).
+3. **Posing**: Examine the subjects to understand their positioning and posture.
+4. **Style**: Identify the overall aesthetic or genre of the photograph (e.g., portrait, landscape, documentary).
+5. **Grain**: Look at the texture and detect any noticeable film grain or digital noise.
+6. **Mood**: Evaluate the overall emotional tone or atmosphere of the photograph.
+7. **Framing**: Analyze how the subject and scene are composed within the image boundaries. Identify the crop, angle, and spatial arrangement.
+8. **Character**: Assess the observable demographic and physical attributes of the subject(s), including apparent ethnicity, age range, gender, and notable physical characteristics
+9. **Emotions**: Analyze the subjects' facial and bodily expressions to infer emotions portrayed in the image.
+
+
+# Output Format
+
+The output should be formatted as a JSON object with keys representing each attribute and their respective evaluations as a list of tags, each with a weight indicating its frequency of occurrence:
+
+{
+  "lighting": [{"tag": "[type of lighting]", "weight": [frequency weight]}],
+  "setting": [{"tag": "[location or scene setting]", "weight": [frequency weight]}],
+  "posing": [{"tag": "[subject positioning]", "weight": [frequency weight]}],
+  "style": [{"tag": "[aesthetic or genre]", "weight": [frequency weight]}],
+  "grain": [{"tag": "[film grain or digital noise]", "weight": [frequency weight]}],
+  "mood": [{"tag": "[emotional tone]", "weight": [frequency weight]}],
+  "framing": [{"tag": "[composition type or crop]", "weight": [frequency weight]}],
+  "character": [{"tag": "[demographic or physical attribute]", "weight": [frequency weight]}],
+  "emotions": [{"tag": "[subject emotion]", "weight": [frequency weight]}]
+}
+
+# Examples
+
+**Input**: An image of a 1940s vintage-style portrait in a dimly lit room taken with a classic camera, featuring a flash highlighting a joyful and warm atmosphere.
+
+**Output**:
+{
+  "lighting": [{"tag": "dim", "weight": 0.7}, {"tag": "soft", "weight": 0.3}],
+  "setting": [{"tag": "indoor", "weight": 0.5}, {"tag": "vintage style room", "weight": 0.5}],
+  "posing": [{"tag": "formal", "weight": 0.6}, {"tag": "seated", "weight": 0.4}],
+  "style": [{"tag": "vintage portrait", "weight": 1.0}],
+  "grain": [{"tag": "noticeable film grain", "weight": 1.0}],
+  "mood": [{"tag": "warm", "weight": 0.9}],
+  "framing": [{"tag": "centered portrait", "weight": 0.7}, {"tag": "close-up", "weight": 0.3}],
+  "character": [{"tag": "asian", "weight": 0.8}, {"tag": "30s", "weight": 0.6}],
+  "emotions": [{"tag": "joyful", "weight": 0.8}]
+}
+
+# Notes
+
+- Consider the context and common characteristics associated with each attribute to provide accurate metadata evaluations.
+- Use visual elements and stylistic cues to inform the era categorization.
+- Assign weights to tags based on their observed frequency within each evaluated attribute.
+- Be consistent in the format and detail level for each metadata evaluation.
+- Ensure the evaluations of camera, lens, flash, emotions, and mood are integrated effectively.
